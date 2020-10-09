@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <!-- <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style> -->
+
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   
+    <script>
+        $(function () {
+          var socket = io();
+          $('form').submit(function(e){
+            e.preventDefault(); // prevents page reloading
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+          });
+          socket.on('chat message', function(msg){
+            
+            $('#messages').append($('<li>').text(msg));           
+          });
+          socket.on('msg', function(adminMsg){
+            if(adminMsg == "1"){
+              $('#firstP').show();
+              $('#secondP').hide();
+              $('#thirdP').hide();
+              $('#fourthP').hide();
+
+            }else if(adminMsg == "2"){
+              $('#firstP').hide();
+              $('#secondP').show();
+              $('#thirdP').hide();
+              $('#fourthP').hide();
+            }else if(adminMsg == "3"){
+              $('#firstP').hide();
+              $('#secondP').hide();
+              $('#thirdP').show();
+              $('#fourthP').hide();
+            }else if(adminMsg == "4"){
+              $('#firstP').hide();
+              $('#secondP').hide();
+              $('#thirdP').hide();
+              $('#fourthP').show();
+            }else if(adminMsg == "nothing"){
+              $('#firstP').hide();
+              $('#secondP').hide();
+              $('#thirdP').hide();
+              $('#fourthP').hide();
+            }else{
+              $('#firstP').show();
+              $('#secondP').hide();
+              $('#thirdP').show();
+              $('#fourthP').hide();
+            }
+            
+          });
+        });
+      </script>
+
+      <br><br><br><br><br><br><br><br><br><br>
+      <div style="background-color: red;"> 
+          <p id="firstP" hidden> Something</p>
+      </div>
+      <br>
+      <div style="background-color: yellow;"> 
+        <p id="secondP" hidden> Something</p>
+      </div>
+      <br>
+      <div style="background-color: green;"> 
+        <p id="thirdP" hidden> Something</p>
+      </div>
+      <br>
+      <div style="background-color: blue;"> 
+        <p id="fourthP" hidden> Something</p>
+      </div>
+
+      <script>
+          
+      </script>
+
+      
+
+  </body>
+</html>

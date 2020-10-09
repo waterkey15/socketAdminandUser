@@ -2,9 +2,9 @@
 
 Bir admin bir de user html i olarak tasarlandi
 
-Admin html ini acmak icin admin dosyasina girip 'node index.js' yazmak gerekiyor
+Admin html ini acmak icin admin dosyasina girip terminalde 'node index.js' yazmak gerekiyor
 
-User html in iacmak icinse mevzut dosyada 'node index.js' yazmak gerekiyor
+User html in iacmak icinse mevzut dosyada terminalde 'node index.js' yazmak gerekiyor
 
 Admin chat bolumune 1 2 3 4 veya nothing girdigi zaman user html i manipule oluyor fakat manipule olmasi icin user html inde submit tusuna basilmasi lazim,
 Admin :
